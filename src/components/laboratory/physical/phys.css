@@ -1,0 +1,254 @@
+/* ===== Лабораторія фізичних властивостей ===== */
+.phys-scene {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    border: 1px solid var(--ln);
+    background: #e5e4dc;
+  }
+  
+  /* зважування й перенесення наважки */
+  .ph-spat {
+    animation: spat 1.6s ease-in-out both;
+  }
+  
+  @keyframes spat {
+    0% { translate: 0 0; opacity: 1; }
+    25% { translate: 76px -9px; }
+    50% { translate: 0 0; }
+    75% { translate: 76px -9px; }
+    99% { translate: 0 0; opacity: 1; }
+    100% { translate: 0 0; opacity: 0; }
+  }
+  
+  .ph-boat {
+    transform-box: fill-box;
+    transform-origin: 100% 100%;
+    animation: boat 8s ease-in-out both;
+  }
+  
+  @keyframes boat {
+    0%, 23% { transform: translate(0, 0) rotate(0); }
+    42% { transform: translate(86px, -47px) rotate(0); }
+    55%, 62% { transform: translate(86px, -47px) rotate(62deg); }
+    72%, 100% { transform: translate(0, 0) rotate(0); }
+  }
+  
+  .ph-boatx {
+    transform-box: fill-box;
+    transform-origin: 50% 100%;
+    animation: boatx 8s linear both;
+  }
+  
+  @keyframes boatx {
+    0% { transform: scale(0); }
+    20% { transform: scale(var(--g)); }
+    44% { transform: scale(var(--g)); opacity: 1; }
+    52%, 100% { transform: scale(var(--g)); opacity: 0; }
+  }
+  
+  /* падіння, розчинення, мутність */
+  .ph-fall {
+    opacity: 0;
+    animation: pfall 0.9s ease-in var(--fd) both;
+  }
+  
+  @keyframes pfall {
+    0% { opacity: 1; transform: translateY(0); }
+    100% { opacity: 1; transform: translateY(var(--dy)); }
+  }
+  
+  .ph-dis {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: pdis 1.3s ease-in var(--dd) both;
+  }
+  
+  @keyframes pdis {
+    to { opacity: 0; transform: scale(0.15); }
+  }
+  
+  .ph-cloud {
+    opacity: 0;
+  }
+  
+  .ph-cloud.dis {
+    animation: cloudd 8s linear both;
+  }
+  
+  .ph-cloud.res {
+    animation: cloudr 8s linear both;
+  }
+  
+  @keyframes cloudd {
+    0%, 48% { opacity: 0; }
+    58% { opacity: 0.55; }
+    92%, 100% { opacity: 0; }
+  }
+  
+  @keyframes cloudr {
+    0%, 48% { opacity: 0; }
+    58% { opacity: 0.55; }
+    100% { opacity: 0.2; }
+  }
+  
+  .ph-rod {
+    opacity: 0;
+    animation: rodshow 0.4s linear 4.4s both, stir 0.45s ease-in-out 4.6s 6 alternate both;
+  }
+  
+  @keyframes rodshow {
+    to { opacity: 1; }
+  }
+  
+  @keyframes stir {
+    from { transform: translateX(-9px) rotate(-5deg); }
+    to { transform: translateX(9px) rotate(5deg); }
+  }
+  
+  /* камера вологості */
+  .ph-lid {
+    animation: lid 0.8s ease-in both;
+  }
+  
+  @keyframes lid {
+    from { transform: translateY(-16px); }
+    to { transform: none; }
+  }
+  
+  .ph-wet {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: wet 3.2s ease-in-out 3s both;
+  }
+  
+  @keyframes wet {
+    from { opacity: 0; transform: scale(0.3); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  
+  .ph-xt {
+    animation: xt 3.2s ease-in 3s both;
+  }
+  
+  @keyframes xt {
+    to { opacity: 0.12; }
+  }
+  
+  /* pH-папірець */
+  .ph-dip {
+    animation: dip 5.2s ease-in-out both;
+  }
+  
+  @keyframes dip {
+    0% { transform: translate(0, -44px); }
+    18%, 52% { transform: translate(0, 0); }
+    76%, 100% { transform: translate(25px, -30px); }
+  }
+  
+  .ph-paper {
+    fill: #ead98b;
+    stroke: #b9a95a;
+    stroke-width: 0.4;
+    animation: paper 1.6s ease-in-out 0.9s both;
+  }
+  
+  @keyframes paper {
+    from { fill: #ead98b; }
+    to { fill: var(--c); }
+  }
+  
+  /* лупа */
+  .ph-lens {
+    animation: lens 4.6s ease-in-out both;
+  }
+  
+  @keyframes lens {
+    0% { transform: translate(70px, 4px); }
+    16%, 80% { transform: translate(0, 0); }
+    100% { transform: translate(70px, 4px); }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .ph-spat, .ph-boat, .ph-boatx, .ph-rod { animation-duration: 0.01s; }
+  }
+  
+  /* панель керування */
+  .phys-tests {
+    display: grid;
+    gap: 8px;
+  }
+  
+  .phys-group {
+    border: 1px solid var(--ln);
+    border-radius: 12px;
+    padding: 8px 10px;
+    background: var(--card);
+  }
+  
+  .phys-group > b {
+    font-size: 0.82rem;
+    color: var(--tx);
+    display: block;
+    margin-bottom: 6px;
+  }
+  
+  .phys-group .btns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  
+  .phys-group button {
+    padding: 6px 11px;
+    font-size: 0.84rem;
+    border-radius: 9px;
+  }
+  
+  .phys-group button.done {
+    opacity: 0.65;
+    border-style: dashed;
+    background: var(--surface);
+  }
+  
+  /* Чіпи кандидатів у стилі шкали SoilSim */
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin: 10px 0;
+  }
+  
+  .cand {
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding: 3px 11px;
+    border-radius: 999px;
+    border: 1px solid var(--ln);
+    background: var(--card);
+    color: var(--mu);
+    transition: all 0.15s ease;
+  }
+  
+  .cand.out {
+    text-decoration: line-through;
+    opacity: 0.42;
+    background: var(--surface);
+  }
+  
+  .cand.in {
+    border-color: var(--g);
+    background: var(--g-soft);
+    color: var(--ok);
+    font-weight: 600;
+  }
+  
+  .tablewrap table {
+    font-size: 0.84rem;
+  }
+  
+  .tablewrap th, .tablewrap td {
+    padding: 6px 8px;
+  }
